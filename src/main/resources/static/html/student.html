@@ -33,7 +33,8 @@
     var array = document.querySelector('#left').querySelectorAll('a');
     for (var i = 0; i<array.length ; i++) {
         array[i].addEventListener('click',function (e) {
-            iframe.src = this.href;
+            iframe.src = this.href +location.search;
+
             e.preventDefault();
         })
     }

@@ -3,34 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+    <script src="https://libs.baidu.com/jquary/3.3.1/jquary.min.js"></script>
 </head>
 <body>
 
 <div>
-    <h3>基本信息</h3>
-    姓名: <span>欧志康</span><br>
-    性别: <span>男</span><br>
-    专业: <span>计科</span><br>
-    班级: <span>1803</span>
-
+<!--   <form action=""  method="post" onsubmit="return false">-->
+        <h3>基本信息</h3>
+        姓名: <span>欧志康</span><br>
+        性别: <span>男</span><br>
+        专业: <span>计科</span><br>
+        班级: <span>1803</span>
+<!--        <button class="but" type="submit" >登录</button>-->
+<!--    </form>-->
 </div>
 
 </body>
 <script>
-    var spans = document.querySelectorAll('span');
-    $.ajax({
-        url:'/allsong',
-        type:'POST',
-        dataType:"json",
-        contentType:'application/x-www-form-urlencoded;charset=UTF-8',
-        success:function (arg){
-            for(var i = 0; i<spans.length;i++) {
-                spans[i].innerHTML = arg.data
-            }
-        },
-        error:function (e) {
-        }
 
-    })
+
+    window.onload = function () {
+        var spans = document.querySelectorAll('span');
+        var urls = window.location.search;
+        urls = urls.substr(9,urls.length-9);
+        $.ajax({
+            // TODO
+            url:'/login',
+            type:'POST',
+            dataType:"json",
+            contentType:'application/x-www-form-urlencoded;charset=UTF-8',
+            data:{userNum:urls},
+            success:function (arg){
+
+            },
+            error:function (e) {
+                spans[0].innerHTML = '欧志康1';
+                spans[1].innerHTML = '男1';
+                spans[2].innerHTML = '计科1';
+                spans[3].innerHTML = '18031';
+                console.log(e.data);
+            }
+
+        })
+    }
+
 </script>
 </html>
