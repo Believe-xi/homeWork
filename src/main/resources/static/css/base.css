@@ -1,0 +1,39 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+ul {
+    margin: 0;
+    list-style: none;
+}
+a {
+    text-decoration: none;
+    color: black;
+}
+body {
+    height: 100%;
+}
+#left {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 14%;
+    text-align: center;
+    background-color: red;
+}
+#left ul li {
+    cursor: pointer;
+}
+#left ul li a {
+    display:block;
+    margin-top: 34px;
+}
+.iframe {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height:100%;
+    width:86%;
+    margin-left: 200px;
+}

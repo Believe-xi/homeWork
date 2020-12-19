@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="Login.css"/>
+    <link rel="stylesheet" href="../css/login.css">
+</head>
+<body>
+<div id="login">
+    <h1>Login</h1>
+    <form method="post">
+        <input type="text" required="required" placeholder="用户名" name="u">
+        <input type="password" required="required" placeholder="密码" name="p">
+        <button class="but" type="submit" >登录</button>
+    </form>
+</div>
+</body>
+<script>
+    var userName = document.getElementById("userName").value;
+    var passWord = document.getElementById("passWord").value;
+    var btn = document.querySelector('button');
+    btn.addEventListener('click',function (e) {
+
+    })
+    sign = function (e){
+        var url = e=="in"?"/login":"/register"
+
+
+        $.ajax({
+            url:url,
+            type:'POST',
+            dataType:"json",
+            contentType:'application/x-www-form-urlencoded;charset=UTF-8',
+            data: {"userName": userName, "passWord": passWord},
+            success:function (arg){
+                if(arg.status==200&&arg.msg!="注册成功"){
+                    window.open('index.html','_self');
+                }else
+                {
+                    alert(arg.msg);
+                }
+
+            },
+            error:function (e) {
+            }
+
+        })
+
+    }
+</script>
+</html>

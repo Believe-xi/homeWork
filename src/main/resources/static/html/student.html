@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>student</title>
+    <link rel="stylesheet" href="../css/student.css">
+    <link rel="stylesheet" href="../css/base.css">
+</head>
+<body>
+<div id="left">
+    <ul >
+        <li>
+            <a target="right" href="studentImfor.html">个人信息</a>
+        </li>
+        <li>
+            <a target="right"  href="studentHomework.html" >提交作业</a>
+        </li>
+        <li><a href="checkGrade.html">查看成绩</a></li>
+        <li><a href="">
+
+        </a></li>
+        <li><a href="">
+
+        </a></li>
+    </ul>
+</div>
+
+<div  class="iframe">
+    <iframe src="homePage.html" id="right" name="frame" scrolling="no" frameborder="0" height="100%" width="100%"></iframe>
+</div>
+</body>
+<script>
+    var iframe = document.querySelector('iframe');
+    var array = document.querySelector('#left').querySelectorAll('a');
+    for (var i = 0; i<array.length ; i++) {
+        array[i].addEventListener('click',function (e) {
+            iframe.src = this.href;
+            e.preventDefault();
+        })
+    }
+</script>
+</html>
