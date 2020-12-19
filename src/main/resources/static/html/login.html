@@ -10,7 +10,7 @@
 <body>
 <div id="login">
     <h1>Login</h1>
-    <form action=""  method="post" onsubmit="return false" id="formtest">
+    <form action=""  method="post" onsubmit="return false">
         <input type="text"  name="userName" id="userName"   style="color:cyan;" placeholder="登录/输入账号/密码 "><br>
         <input type="password" name="passWord" id="passWord">
         <select>
@@ -28,7 +28,7 @@
     var btn = document.querySelector('button');
     btn.addEventListener('click',function (e) {
         console.log(selects.value);
-        var userName = document.getElementById("userName").value;
+        var userNum = document.getElementById("userName").value;
         var passWord = document.getElementById("passWord").value;
         var Authentication = selects.value;
         $.ajax({
@@ -36,15 +36,17 @@
             type:'POST',
             dataType:"json",
             contentType:'application/x-www-form-urlencoded;charset=UTF-8',
-            data: {"userName": userName, "passWord": passWord ,"Authentication" :Authentication},
+            data: {"userNum": userNum, "passWord": passWord ,"Authentication" :Authentication},
             success:function (arg){
                 if(arg.status==200&&arg.msg!="注册成功"){
-                    if (selects.value =='学生')
-                    window.open('student.html','_self');
+                    if (selects.value =='学生') {
+                        console.log(arg.msg);
+                        window.open('student.html', '_self');
+                    }
                     else if (selects.value =='老师') {
-                        window.open('teacher.html','_self');
+                       window.open('teacher.html','_self');
                     }else {
-                        window.open('admin.html','_self');
+                       window.open('admin.html','_self');
                     }
                 }else
                 {
