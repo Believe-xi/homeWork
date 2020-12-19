@@ -6,10 +6,6 @@
 </head>
 <body>
 
-<p>id</p>
-<p>姓名</p>
-<p>性别</p>
-<p>班级</p>
 <div>
     <h3>基本信息</h3>
     姓名: <span>欧志康</span><br>
@@ -28,7 +24,9 @@
         dataType:"json",
         contentType:'application/x-www-form-urlencoded;charset=UTF-8',
         success:function (arg){
-            for
+            for(var i = 0; i<spans.length;i++) {
+                spans[i].innerHTML = arg.data
+            }
         },
         error:function (e) {
         }
