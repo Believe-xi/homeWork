@@ -4,6 +4,7 @@ public class UserInfo {
     private String userName;
     private String userNum;
     private String major;
+    private String identity;
     private int classNum;
 
     public String getUserName() {
@@ -28,6 +29,14 @@ public class UserInfo {
 
     public void setMajor(String major) {
         this.major = major;
+    }
+
+    public String getIdentity() {
+        return identity;
+    }
+
+    public void setIdentity(String identity) {
+        this.identity = identity;
     }
 
     public int getClassNum() {
