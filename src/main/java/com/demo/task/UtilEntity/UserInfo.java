@@ -3,6 +3,7 @@ package com.demo.task.UtilEntity;
 public class UserInfo {
     private String userName;
     private String userNum;
+    private String sex;
     private String major;
     private String identity;
     private int classNum;
@@ -21,6 +22,14 @@ public class UserInfo {
 
     public void setUserNum(String userNum) {
         this.userNum = userNum;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
     }
 
     public String getMajor() {
