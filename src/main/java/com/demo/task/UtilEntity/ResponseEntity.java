@@ -1,11 +1,12 @@
-package com.demo.task.utils;
+package com.demo.task.UtilEntity;
 
-public class ResponseMsg<T> {
+public class ResponseEntity<T> {
     private int status;
     private String msg;
     private T data;
 
-    public ResponseMsg(int status, String msg){
+    public ResponseEntity(){}
+    public ResponseEntity(int status, String msg){
         setStatus(status);
         setMsg(msg);
     }
