@@ -1,0 +1,7 @@
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/Hypnos?characterEncoding=UTF-8
+    username: root
+    password: Hypnos
+    driver-class-name: com.mysql.cj.jdbc.Driver
