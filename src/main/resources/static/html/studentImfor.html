@@ -10,5 +10,29 @@
 <p>姓名</p>
 <p>性别</p>
 <p>班级</p>
+<div>
+    <h3>基本信息</h3>
+    姓名: <span>欧志康</span><br>
+    性别: <span>男</span><br>
+    专业: <span>计科</span><br>
+    班级: <span>1803</span>
+
+</div>
+
 </body>
+<script>
+    var spans = document.querySelectorAll('span');
+    $.ajax({
+        url:'/allsong',
+        type:'POST',
+        dataType:"json",
+        contentType:'application/x-www-form-urlencoded;charset=UTF-8',
+        success:function (arg){
+            for
+        },
+        error:function (e) {
+        }
+
+    })
+</script>
 </html>

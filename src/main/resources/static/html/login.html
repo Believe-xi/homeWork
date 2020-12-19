@@ -3,39 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
-    <link rel="stylesheet" type="text/css" href="Login.css"/>
     <link rel="stylesheet" href="../css/login.css">
+    <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+    <script src="https://libs.baidu.com/jquary/3.3.1/jquary.min.js"></script>
 </head>
 <body>
 <div id="login">
     <h1>Login</h1>
-    <form method="post">
-        <input type="text" required="required" placeholder="用户名" name="u">
-        <input type="password" required="required" placeholder="密码" name="p">
+
+        <input type="text"  name="userName" id="userName"   style="color:cyan;" placeholder="登录/输入账号/密码 "><br>
+        <input type="password" name="passWord" id="passWord">
+        <select>
+             <option value="学生" selected="selected">学生</option>
+            <option value="老师"  >老师</option>
+            <option  value="管理员" >管理员</option>
+        </select>
+
         <button class="but" type="submit" >登录</button>
-    </form>
+
 </div>
 </body>
 <script>
-    var userName = document.getElementById("userName").value;
-    var passWord = document.getElementById("passWord").value;
+    var selects = document.querySelector('select');
     var btn = document.querySelector('button');
     btn.addEventListener('click',function (e) {
-
-    })
-    sign = function (e){
-        var url = e=="in"?"/login":"/register"
-
-
+        console.log(selects.value);
+        var userName = document.getElementById("userName").value;
+        var passWord = document.getElementById("passWord").value;
         $.ajax({
-            url:url,
+            url:'/login',
             type:'POST',
             dataType:"json",
             contentType:'application/x-www-form-urlencoded;charset=UTF-8',
-            data: {"userName": userName, "passWord": passWord},
+            data: {"userName": userName, "passWord": passWord ,},
             success:function (arg){
                 if(arg.status==200&&arg.msg!="注册成功"){
-                    window.open('index.html','_self');
+                    if (selects.value =='学生')
+                    window.open('student.html','_self');
+                    else if (selects.value =='老师') {
+                        window.open('teacher.html','_self');
+                    }else {
+                        window.open('admin.html','_self');
+                    }
                 }else
                 {
                     alert(arg.msg);
@@ -46,7 +55,7 @@
             }
 
         })
+    })
 
-    }
 </script>
 </html>

@@ -20,14 +20,18 @@ body {
     height: 100%;
     width: 14%;
     text-align: center;
-    background-color: red;
+    background-color: skyblue;
 }
 #left ul li {
     cursor: pointer;
+
+}
+#left ul li:hover {
+    background-color: #ffffff;
 }
 #left ul li a {
     display:block;
-    margin-top: 34px;
+    padding: 17px 0;
 }
 .iframe {
     position: absolute;
