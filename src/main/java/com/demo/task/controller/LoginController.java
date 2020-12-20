@@ -5,6 +5,7 @@ import com.demo.task.Service.ClassService;
 import com.demo.task.Service.StudentService;
 import com.demo.task.UtilEntity.ResponseEntity;
 import com.demo.task.UtilEntity.UserInfo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,13 +15,11 @@ import javax.servlet.http.HttpServletResponse;
 
 @RestController
 public class LoginController {
+    @Autowired
     StudentService studentService;
+    @Autowired
     ClassService classService;
 
-    public LoginController(StudentService studentService, ClassService classService) {
-        this.studentService = studentService;
-        this.classService = classService;
-    }
 
     @PostMapping("/login")
     public ResponseEntity<UserInfo> login(HttpServletRequest request, HttpServletResponse response){
