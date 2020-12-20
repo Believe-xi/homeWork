@@ -13,4 +13,8 @@ public class ClassService {
     public ClassEntity getClass(int classId){
         return classDao.findById(classId);
     }
+
+    public ClassEntity saveClass(ClassEntity classEntity){
+        return classDao.save(classEntity);
+    }
 }
