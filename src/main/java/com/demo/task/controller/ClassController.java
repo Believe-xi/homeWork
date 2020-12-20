@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 @RestController
 public class ClassController {
@@ -23,4 +24,23 @@ public class ClassController {
         classService.saveClass(classEntity);
         return new ResponseEntity<>(200,"success");
     }
+
+    @PostMapping("/allClass")
+    public ResponseEntity<List<ClassEntity>> allClass(HttpServletRequest request, HttpServletResponse response){
+        ResponseEntity<List<ClassEntity>> responseEntity = new ResponseEntity<>();
+        responseEntity.setStatus(200);
+        responseEntity.setMsg("success");
+        responseEntity.setData(classService.getAllClass());
+        return responseEntity;
+    }
 }
+
+
+
+
+
+
+
+
+
+

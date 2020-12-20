@@ -5,6 +5,8 @@ import com.demo.task.dao.ClassDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ClassService {
     @Autowired
@@ -16,5 +18,9 @@ public class ClassService {
 
     public ClassEntity saveClass(ClassEntity classEntity){
         return classDao.save(classEntity);
+    }
+
+    public List<ClassEntity> getAllClass(){
+        return classDao.findAll();
     }
 }
