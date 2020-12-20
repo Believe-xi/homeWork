@@ -1,5 +1,7 @@
 package com.demo.task.controller;
 
+import com.demo.task.Entity.AdminEntity;
+import com.demo.task.Service.AdminService;
 import com.demo.task.Service.ClassService;
 import com.demo.task.Service.StudentService;
 import com.demo.task.Service.TeacherService;
@@ -19,6 +21,8 @@ public class LoginController {
     StudentService studentService;
     @Autowired
     TeacherService teacherService;
+    @Autowired
+    AdminService adminService;
     @Autowired
     ClassService classService;
 
@@ -70,5 +74,27 @@ public class LoginController {
 
         //返回响应体
         return loginResponse;
+    }
+
+    @PostMapping("/adminLogin")
+    public ResponseEntity<String> adminLogin(HttpServletRequest request, HttpServletResponse response){
+        String adminNum = request.getParameter("userNum");
+        String adminPwd = request.getParameter("passWord");
+        AdminEntity adminEntity = adminService.getAdmin(adminNum);
+        ResponseEntity<String> responseEntity = new ResponseEntity<>();
+
+        if(adminEntity == null){
+            responseEntity.setStatus(201);
+            responseEntity.setMsg("user is not exists");
+        }
+        else if(adminEntity.getAdminPassword().equals(adminPwd)){
+            responseEntity.setStatus(200);
+            responseEntity.setMsg("success");
+        }
+        else{
+            responseEntity.setStatus(201);
+            responseEntity.setMsg("failed");
+        }
+        return responseEntity;
     }
 }
