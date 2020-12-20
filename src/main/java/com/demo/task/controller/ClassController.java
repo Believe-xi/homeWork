@@ -16,9 +16,15 @@ public class ClassController {
     @Autowired
     ClassService classService;
 
-    @PostMapping("/addClass")
+    @PostMapping("/saveClass")
     public ResponseEntity<String> addClass(HttpServletRequest request, HttpServletResponse response){
-        ClassEntity classEntity = new ClassEntity();
+        ClassEntity classEntity = null;
+        //根据classId从数据库获取
+        classEntity = classService.getClass(Integer.parseInt(request.getParameter("classId")));
+        //若数据库无此班级则新建
+        if(classEntity == null){
+            classEntity = new ClassEntity();
+        }
         classEntity.setMajor(request.getParameter("major"));
         classEntity.setNum(Integer.parseInt(request.getParameter("classNum")));
         classService.saveClass(classEntity);
@@ -34,16 +40,6 @@ public class ClassController {
         return responseEntity;
     }
 
-    @PostMapping("/alterClass")
-    public ResponseEntity<ClassEntity> alterClass(HttpServletRequest request, HttpServletResponse response){
-        ClassEntity classEntity = classService.getClass(Integer.parseInt(request.getParameter("classId")));
-        classEntity.setMajor(request.getParameter("major"));
-        classEntity.setNum(Integer.parseInt(request.getParameter("classNum")));
-        classService.saveClass(classEntity);
-        ResponseEntity<ClassEntity> responseEntity = new ResponseEntity<>(200,"success");
-        responseEntity.setData(classEntity);
-        return responseEntity;
-    }
 }
 
 
