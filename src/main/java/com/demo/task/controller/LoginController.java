@@ -48,6 +48,7 @@ public class LoginController {
             UserInfo userInfo = new UserInfo();
             userInfo.setUserName(studentEntity.getName());
             userInfo.setUserNum(studentEntity.getNum());
+            userInfo.setSex(studentEntity.getSex());
             userInfo.setMajor(classService.getClass(studentEntity.getClassId()).getMajor());
             userInfo.setClassNum(classService.getClass(studentEntity.getClassId()).getNum());
             loginResponse.setData(userInfo);
@@ -55,6 +56,7 @@ public class LoginController {
             //给响应消息添加cookie
             response.addCookie(new Cookie("userNum",userInfo.getUserNum()));
             response.addCookie(new Cookie("userName",userInfo.getUserName()));
+            response.addCookie(new Cookie("sex",userInfo.getSex()));
             response.addCookie(new Cookie("Major",userInfo.getMajor()));
             response.addCookie(new Cookie("className",String.valueOf(userInfo.getClassNum())));
 
