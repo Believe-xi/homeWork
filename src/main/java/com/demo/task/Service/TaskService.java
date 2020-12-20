@@ -23,4 +23,8 @@ public class TaskService {
     public TaskEntity submitTask(TaskEntity taskEntity){
         return taskDao.save(taskEntity);
     }
+
+    public List<TaskEntity> getOwnTask(int id){
+        return taskDao.findAllByStudentId(id);
+    }
 }

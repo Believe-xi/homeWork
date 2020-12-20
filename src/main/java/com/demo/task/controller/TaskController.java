@@ -36,4 +36,10 @@ public class TaskController {
         taskEntity.setContent(request.getParameter("content"));
         return new ResponseEntity<>(200,"Success", taskService.submitTask(taskEntity));
     }
+
+    @PostMapping("/ownTask")
+    public ResponseEntity<List<TaskEntity>> getOwnTask(HttpServletRequest request, HttpServletResponse response){
+
+        return new ResponseEntity<>(200,"Success!",taskService.getOwnTask(Integer.parseInt(getCookieValue(request.getCookies(), "userId"))));
+    }
 }
