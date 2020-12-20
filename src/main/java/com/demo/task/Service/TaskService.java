@@ -27,4 +27,8 @@ public class TaskService {
     public List<TaskEntity> getOwnTask(int id){
         return taskDao.findAllByStudentId(id);
     }
+
+    public TaskEntity getTask(int id){
+        return taskDao.findById(id);
+    }
 }

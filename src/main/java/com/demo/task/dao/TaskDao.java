@@ -9,4 +9,5 @@ import java.util.List;
 public interface TaskDao extends JpaRepository<TaskEntity,Integer> {
     List<TaskEntity> findAll();
     List<TaskEntity> findAllByStudentId(int studentId);
+    TaskEntity findById(int id);
 }
