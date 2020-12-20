@@ -49,7 +49,7 @@ public class LoginController {
             loginResponse.setStatus(201);
             loginResponse.setMsg("用户不存在！");
         }
-        //如果用户密码与数据库不匹配
+        //如果用户密码与数据库匹配
         else if(requestPassWord.equals(userEntity.getPassWord())){
             loginResponse.setStatus(200);
             loginResponse.setMsg("成功！");

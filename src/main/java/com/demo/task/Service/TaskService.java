@@ -20,7 +20,7 @@ public class TaskService {
         return taskDao.findAllByStudentId(studentId);
     }
 
-    public TaskEntity submitTask(TaskEntity taskEntity){
+    public TaskEntity saveTask(TaskEntity taskEntity){
         return taskDao.save(taskEntity);
     }
 

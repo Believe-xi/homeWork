@@ -34,7 +34,7 @@ public class TaskController {
         taskEntity.setStudentId(Integer.parseInt(getCookieValue(cookies, "userId")));
         taskEntity.setTitle(request.getParameter("title"));
         taskEntity.setContent(request.getParameter("content"));
-        return new ResponseEntity<>(200,"Success", taskService.submitTask(taskEntity));
+        return new ResponseEntity<>(200,"Success", taskService.saveTask(taskEntity));
     }
 
     @PostMapping("/ownTask")
@@ -46,6 +46,15 @@ public class TaskController {
     @PostMapping("/getTask")
     public ResponseEntity<TaskEntity> getTask(HttpServletRequest request,HttpServletResponse response){
         return new ResponseEntity<>(200,"Success!", taskService.getTask(Integer.parseInt(request.getParameter("taskId"))));
+    }
+
+    @PostMapping("/evaluate")
+    public ResponseEntity<String> evaluateTask(HttpServletRequest request, HttpServletResponse response){
+        TaskEntity taskEntity = taskService.getTask(Integer.parseInt(request.getParameter("taskId")));
+        taskEntity.setEvaluation(request.getParameter("evaluation"));
+        taskEntity.setGrade(Integer.parseInt(request.getParameter("grade")));
+        taskService.saveTask(taskEntity);
+        return new ResponseEntity<>(200,"success!");
     }
 }
 
