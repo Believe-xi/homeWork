@@ -10,15 +10,14 @@
 <body>
 
 <div>
-<!--   <form action=""  method="post" onsubmit="return false">-->
-        <h3>基本信息</h3>
-        账号: <span>180201</span><br>
-        姓名: <span>欧志康1</span><br>
-        性别: <span>男1</span><br>
-        专业: <span>计科1</span><br>
-        班级: <span>18031</span>
-<!--        <button class="but" type="submit" >登录</button>-->
-<!--    </form>-->
+    <!--   <form action=""  method="post" onsubmit="return false">-->
+    <h3>基本信息</h3>
+    账号: <span>180201</span><br>
+    姓名: <span>欧志康1</span><br>
+    性别: <span>男1</span><br>
+    班级: <span>18031</span>
+    <!--        <button class="but" type="submit" >登录</button>-->
+    <!--    </form>-->
 </div>
 
 </body>
@@ -33,12 +32,11 @@
             type:'POST',
             dataType:"json",
             contentType:'application/x-www-form-urlencoded;charset=UTF-8',
-            data:{"userNum":urls},
+            // data:{"userNum":urls},
             success:function (arg){
                 spans[0].innerHTML = getCookie('userNum');
                 spans[1].innerHTML = getCookie('userName');
                 spans[2].innerHTML = getCookie('sex');
-                spans[3].innerHTML = getCookie('Major');
                 spans[4].innerHTML = getCookie('className');
             },
             error:function (e) {

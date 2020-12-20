@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+    <script src="https://libs.baidu.com/jquary/3.3.1/jquary.min.js"></script>
+    <script src="../js/tools.js"></script>
+    <style>
+        p {
+            margin-top: 10px;
+        }
+        input  {
+            width: 470px;
+            height: 30px;
+        }
+        button {
+            width: 100px;
+            height: 30px;
+        }
+        textarea {
+            background-color: #BFCEDC;
+            border: 1px solid #7F9DB9;
+            font-family: "宋体", "Verdana", "Arial", "Helvetica";
+            vertical-align: top;
+            TEXT-ALIGN: left;
+            font-size: 30px;
+            resize: none;
+        }
+        .btn {
+            margin-top: 10px;
+            width: 478px;
+            margin-left: 41px;
+        }
+        .btn button,.btn input {
+            width: 235px;
+            height: 30px;
+        }
+    </style>
+</head>
+<body>
+
+<div>
+    <!--   <form action=""  method="post" onsubmit="return false">-->
+
+    <form action="" method="post" onsubmit="return false">
+    <h3>作业信息</h3>
+    标题: <span>标题1</span><br><br>
+    内容: <span>作业1</span><br><br>
+    评语: <textarea name="" id="" cols="30" rows="10"></textarea><br><br>
+    成绩: <input type="text">
+        <div class="btn">
+            <button>提交</button>
+            <input type="button" value="返回">
+        </div>
+
+    </form>
+    <!--        <button class="but" type="submit" >登录</button>-->
+    <!--    </form>-->
+</div>
+
+</body>
+<script>
+    // console.log(location);
+    window.onload = function () {
+        var spans = document.querySelectorAll('span');
+        var urls = window.location.search;
+        urls = urls.substr(1,urls.length-1);
+        console.log(urls);
+        $.ajax({
+            // TODO
+            url:'/allTask',
+            type:'POST',
+            dataType:"json",
+            contentType:'application/x-www-form-urlencoded;charset=UTF-8',
+            data:{"userNum":urls},
+            success:function (arg){
+                for (var i = 0; i<arg.data.length;i++){
+                    if (arg.data[i].id == urls){
+                        var data = arg.data[i];
+                        spans[0].innerHTML = data.title;
+                        spans[1].innerHTML = data.content;
+                        break;
+                    }
+                }
+            },
+            error:function (e) {
+
+            }
+
+        })
+    }
+    var textarea = document.querySelector('textarea');
+    var btn = document.querySelector('button');
+    var inputs = document.querySelectorAll('input');
+    btn.addEventListener('click',function (e) {
+        $.ajax({
+            // TODO
+            url:'/allTask',
+            type:'POST',
+            dataType:"json",
+            contentType:'application/x-www-form-urlencoded;charset=UTF-8',
+            data:{"evaluation":textarea.value,"grade":inputs[0].value},
+            success:function (arg){
+                alert("修改成功");
+                window.open('teacherCheck.html');
+
+            },
+            error:function (e) {
+                alert("修改失败");
+            }
+
+        })
+    });
+    input[1].addEventListener('click',function (e) {
+        window.open('teacherCheck.html');
+    })
+</script>
+</html>
