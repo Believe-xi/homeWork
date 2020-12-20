@@ -15,4 +15,9 @@ public interface UserEntity {
     String getSex();
     int getClassId();
 
+    void setNum(String userNum);
+    void setPassWord(String passWord);
+    void setName(String name);
+    void setSex(String sex);
+    void setClassId(int classId);
 }
