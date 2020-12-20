@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
+import static com.demo.task.UtilEntity.CookieUtil.*;
+
 @RestController
 public class TaskController {
     @Autowired
@@ -29,7 +31,7 @@ public class TaskController {
         Cookie[] cookies = request.getCookies();
 
         TaskEntity taskEntity = new TaskEntity();
-        taskEntity.setStudentId(1);
+        taskEntity.setStudentId(Integer.parseInt(getCookieValue(cookies, "userId")));
         taskEntity.setTitle(request.getParameter("title"));
         taskEntity.setContent(request.getParameter("content"));
         return new ResponseEntity<>(200,"Success", taskService.submitTask(taskEntity));
