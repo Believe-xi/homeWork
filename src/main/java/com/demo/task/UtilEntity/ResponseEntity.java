@@ -10,6 +10,11 @@ public class ResponseEntity<T> {
         setStatus(status);
         setMsg(msg);
     }
+    public ResponseEntity(int status, String msg,T data){
+        setStatus(status);
+        setMsg(msg);
+        setData(data);
+    }
 
     public int getStatus() {
         return status;

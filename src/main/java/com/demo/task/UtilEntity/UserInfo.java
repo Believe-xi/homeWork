@@ -1,12 +1,21 @@
 package com.demo.task.UtilEntity;
 
 public class UserInfo {
+    private int userId;
     private String userName;
     private String userNum;
     private String sex;
     private String major;
     private String identity;
     private int classNum;
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
 
     public String getUserName() {
         return userName;
