@@ -5,12 +5,14 @@
     <title>Title</title>
     <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
     <script src="https://libs.baidu.com/jquary/3.3.1/jquary.min.js"></script>
+    <script src="../js/tools.js"></script>
 </head>
 <body>
 
 <div>
 <!--   <form action=""  method="post" onsubmit="return false">-->
         <h3>基本信息</h3>
+        账号: <span>18020</span><br>
         姓名: <span>欧志康</span><br>
         性别: <span>男</span><br>
         专业: <span>计科</span><br>
@@ -21,8 +23,6 @@
 
 </body>
 <script>
-
-
     window.onload = function () {
         var spans = document.querySelectorAll('span');
         var urls = window.location.search;
@@ -38,11 +38,11 @@
 
             },
             error:function (e) {
-                spans[0].innerHTML = '欧志康1';
-                spans[1].innerHTML = '男1';
-                spans[2].innerHTML = '计科1';
-                spans[3].innerHTML = '18031';
-                console.log(e.data);
+                spans[0].innerHTML = getCookie('userNum');
+                spans[1].innerHTML = getCookie('userName');
+                spans[2].innerHTML = getCookie('sex');
+                spans[3].innerHTML = getCookie('Major');
+                spans[4].innerHTML = getCookie('className');
             }
 
         })
