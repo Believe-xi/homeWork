@@ -2,7 +2,7 @@ package com.demo.task.controller;
 
 import com.demo.task.Entity.TaskEntity;
 import com.demo.task.Service.TaskService;
-import com.demo.task.UtilEntity.CookieUtil;
+import com.demo.task.Utils.CookieUtil;
 import com.demo.task.UtilEntity.ResponseEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
-import static com.demo.task.UtilEntity.CookieUtil.*;
+import static com.demo.task.Utils.CookieUtil.*;
 
 @RestController
 public class TaskController {
@@ -42,4 +42,35 @@ public class TaskController {
 
         return new ResponseEntity<>(200,"Success!",taskService.getOwnTask(Integer.parseInt(getCookieValue(request.getCookies(), "userId"))));
     }
+
+    @PostMapping("/getTask")
+    public ResponseEntity<TaskEntity> getTask(HttpServletRequest request,HttpServletResponse response){
+        return new ResponseEntity<>(200,"Success!", taskService.getTask(Integer.parseInt(request.getParameter("taskId"))));
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -9,19 +9,20 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "student")
+@Table(name = "teacher")
 @JsonIgnoreProperties({"handler","hibernateLazyInitializer"})
-public class StudentEntity implements UserEntity {
+public class TeacherEntity implements UserEntity {
+
     @Id
-    @Column(name = "student_id")
+    @Column(name = "teacher_id")
     private int id;
-    @Column(name = "student_num")
+    @Column(name = "teacher_num")
     private String num;
-    @Column(name = "student_password")
+    @Column(name = "teacher_password")
     private String passWord;
-    @Column(name = "student_name")
+    @Column(name = "teacher_name")
     private String name;
-    @Column(name = "student_sex")
+    @Column(name = "teacher_sex")
     private String sex;
     @Column(name = "class_id")
     private int classId;
