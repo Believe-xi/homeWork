@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @RestController
@@ -17,8 +16,8 @@ public class ClassController {
     ClassService classService;
 
     @PostMapping("/saveClass")
-    public ResponseEntity<String> addClass(HttpServletRequest request, HttpServletResponse response){
-        ClassEntity classEntity = null;
+    public ResponseEntity<String> addClass(HttpServletRequest request){
+        ClassEntity classEntity;
         //根据classId从数据库获取
         classEntity = classService.getClass(Integer.parseInt(request.getParameter("classId")));
         //若数据库无此班级则新建
@@ -32,7 +31,7 @@ public class ClassController {
     }
 
     @PostMapping("/allClass")
-    public ResponseEntity<List<ClassEntity>> allClass(HttpServletRequest request, HttpServletResponse response){
+    public ResponseEntity<List<ClassEntity>> allClass(){
         ResponseEntity<List<ClassEntity>> responseEntity = new ResponseEntity<>();
         responseEntity.setStatus(200);
         responseEntity.setMsg("success");
