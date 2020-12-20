@@ -20,16 +20,25 @@ public class UserController {
     @Autowired
     StudentService studentService;
 
-    @PostMapping("/addUser")
-    public ResponseEntity<UserEntity> addTeacher(HttpServletRequest request, HttpServletResponse response){
+    @PostMapping("/saveUser")
+    public ResponseEntity<UserEntity> saveUser(HttpServletRequest request, HttpServletResponse response){
         UserEntity userEntity = null;
+        String userNum = request.getParameter("userNum");
         String identity = request.getParameter("identity");
-        //判断身份创建学生/教师实体
+        //判断身份 创建/更新 学生/教师 实体
         if(identity.equals("学生")){
-            userEntity = new StudentEntity();
+            //从数据库获取信息
+            userEntity = studentService.getStudent(userNum);
+            //查无此人则新建
+            if(userEntity == null){
+                userEntity = new StudentEntity();
+            }
         }
         else if(request.getParameter("identity").equals("教师")){
-            userEntity = new TeacherEntity();
+            userEntity = teacherService.getTeacher(userNum);
+            if(userEntity == null){
+                userEntity = new TeacherEntity();
+            }
         }
         //设置用户属性
         userEntity.setNum(request.getParameter("userNum"));
@@ -62,4 +71,5 @@ public class UserController {
         }
         return responseEntity;
     }
+
 }
