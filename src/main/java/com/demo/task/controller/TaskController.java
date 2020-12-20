@@ -29,7 +29,7 @@ public class TaskController {
         Cookie[] cookies = request.getCookies();
 
         TaskEntity taskEntity = new TaskEntity();
-        taskEntity.setStudentId(Integer.parseInt(cookieUtil.getCookieValue(cookies, "userId")));
+        taskEntity.setStudentId(1);
         taskEntity.setTitle(request.getParameter("title"));
         taskEntity.setContent(request.getParameter("content"));
         return new ResponseEntity<>(200,"Success", taskService.submitTask(taskEntity));

@@ -45,24 +45,23 @@
     var button = document.querySelector('button');
     var input = document.querySelector('input');
 
-    console.log(button);
+    // console.log(button);
     button.addEventListener('click',function () {
         var content = document.getElementById('text');
         var urls = window.location.search;
         urls = urls.substr(9,urls.length-9);
         $.ajax({
             // TODO
-            url:'/login',
+            url:'/submitTask',
             type:'POST',
             dataType:"json",
             contentType:'application/x-www-form-urlencoded;charset=UTF-8',
             data:{"content":content.value,"title":input.value},
             success:function (arg){
-                console.log(content.value);
+                alert("提交成功");
             },
             error:function (e) {
-                console.log(input.value);
-                console.log(content.value);
+                alert("提交失败");
             }
 
         })
