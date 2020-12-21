@@ -31,17 +31,19 @@
 
 <div id = "title" class="container">
    <div> 获取班级</div>
-    <div class="panel panel-default">id: <span>1</span> 专业:  <span>计科</span> 班级:<span>1803</span> <button>删除</button></div>
+<!--    <div class="panel panel-default">id: <span>1</span> 专业:  <span>计科</span> 班级:<span>1803</span> <button>删除</button></div>-->
 
 </div>
 
 </body>
 <script>
-    var data = [];
+
     window.onload = function () {
+        console.log(2);
         var title = document.querySelector('#title');
         var urls = window.location.search;
         urls = urls.substr(9,urls.length-9);
+        var btns;
         $.ajax({
             // TODO
             url:'/allClass',
@@ -51,14 +53,15 @@
             data:{"userNum":urls},
             success:function (arg){
                 for (var i = 0; i<arg.data.length;i++){
-                    data = arg.data;
+
                     var temp = document.createElement('div');
                     temp.className = 'panel panel-default';
                     title.appendChild(temp);
-                    temp.innerHTML = 'id: <span></span> 专业:  <span></span> 班级:<span></span> <button>删除</button>';
+                    temp.innerHTML = 'id: <span></span> 专业:  <span></span> 班级:<span></span> <button >删除</button>';
                     temp.children[0].innerHTML = arg.data[i].id;
                     temp.children[1].innerHTML = arg.data[i].major;
                     temp.children[2].innerHTML = arg.data[i].num;
+                    temp.children[3].addEventListener('click',btnClick);
                     // console.log(arg.data);
                 }
             },
@@ -66,27 +69,24 @@
 
 
             }
-
         })
     }
-    var btns = document.querySelectorAll('button');
-    for (var i = 0; i < btns.lengtg; i++) {
-        btns[i].addEventListener('click',function () {
-            $.ajax({
-                // TODO
-                url:'/submitTask',
-                type:'POST',
-                dataType:"json",
-                contentType:'application/x-www-form-urlencoded;charset=UTF-8',
-                data:{},
-                success:function (arg){
-                    alert("删除成功");
-                },
-                error:function (e) {
-                    alert("删除失败");
-                }
+    btnClick = function (e) {
+        var classId = e.target.parentNode.firstElementChild.value;
+        $.ajax({
+            // TODO
+            url:'/deleteClass',
+            type:'POST',
+            dataType:"json",
+            contentType:'application/x-www-form-urlencoded;charset=UTF-8',
+            data:{"classId":classId},
+            success:function (arg){
+                alert("删除成功");
+            },
+            error:function (e) {
+                alert("删除失败");
+            }
 
-            })
         })
     }
 

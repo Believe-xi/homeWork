@@ -104,10 +104,7 @@
             contentType:'application/x-www-form-urlencoded;charset=UTF-8',
             data:{"evaluation":textarea.value,"grade":parseInt(inputs[0].value),"taskId":taskId},
             success:function (arg){
-                // alert("修改成功");
-                // window.open('teacherCheck.html','_self');
-                alert(arg);
-
+                window.open('teacherCheck.html','_self');
             },
             error:function (e) {
                 alert("修改失败");
