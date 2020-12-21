@@ -23,4 +23,8 @@ public class ClassService {
     public List<ClassEntity> getAllClass(){
         return classDao.findAll();
     }
+
+    public void deleteClass(ClassEntity classEntity){
+         classDao.delete(classEntity);
+    }
 }
