@@ -31,4 +31,15 @@ public class TaskService {
     public TaskEntity getTask(int id){
         return taskDao.findById(id);
     }
+
+    public void deleteTaskById(int taskId){
+        taskDao.delete(getTask(taskId));
+    }
+
+    public void deleteTaskByStudentId(int studentId){
+        List<TaskEntity> taskList = getAllTaskByStudentId(studentId);
+        for(TaskEntity task : taskList){
+            deleteTaskById(task.getId());
+        }
+    }
 }

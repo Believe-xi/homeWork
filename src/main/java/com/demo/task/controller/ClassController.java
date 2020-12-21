@@ -2,6 +2,7 @@ package com.demo.task.controller;
 
 import com.demo.task.Entity.ClassEntity;
 import com.demo.task.Service.ClassService;
+import com.demo.task.Service.StudentService;
 import com.demo.task.UtilEntity.ResponseEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +15,8 @@ import java.util.List;
 public class ClassController {
     @Autowired
     ClassService classService;
+    @Autowired
+    StudentService studentService;
 
     @PostMapping("/saveClass")
     public ResponseEntity<ClassEntity> addClass(HttpServletRequest request){
