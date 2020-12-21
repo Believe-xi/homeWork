@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+    <script src="https://libs.baidu.com/jquary/3.3.1/jquary.min.js"></script>
+    <script src="../js/tools.js"></script>
+    <style>
+        p {
+            margin-top: 10px;
+        }
+        input  {
+            width: 470px;
+            height: 30px;
+        }
+        button {
+            margin-left: 34px;
+            width: 100px;
+            height: 30px;
+        }
+        textarea {
+            background-color: #BFCEDC;
+            border: 1px solid #7F9DB9;
+            font-family: "宋体", "Verdana", "Arial", "Helvetica";
+            vertical-align: top;
+            TEXT-ALIGN: left;
+            font-size: 30px;
+            resize: none;
+        }
+        .textbox {
+
+        }
+    </style>
+</head>
+<body>
+<form action=""  method="post" onsubmit="return false">
+    标题:<input type="text"><br><br>
+    作业:<textarea  name="" id="text" cols="30" rows="10"></textarea><br><br>
+    <button>提交</button>
+</form>
+
+</body>
+<script>
+    var button = document.querySelector('button');
+    var input = document.querySelector('input');
+
+    // console.log(button);
+    button.addEventListener('click',function () {
+        var content = document.getElementById('text');
+        var urls = window.location.search;
+        urls = urls.substr(9,urls.length-9);
+        $.ajax({
+            // TODO
+            url:'/submitTask',
+            type:'POST',
+            dataType:"json",
+            contentType:'application/x-www-form-urlencoded;charset=UTF-8',
+            data:{"content":content.value,"title":input.value},
+            success:function (arg){
+                alert("提交成功");
+            },
+            error:function (e) {
+                alert("提交失败");
+            }
+
+        })
+    });
+
+</script>
+</html>

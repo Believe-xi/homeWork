@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="../css/login.css">
+    <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+    <script src="https://libs.baidu.com/jquary/3.3.1/jquary.min.js"></script>
+</head>
+<body>
+<div id="login">
+    <h1>Admin</h1>
+    <form action=""  method="post" onsubmit="return false">
+        <input type="text"  name="userName" id="userName"   style="color:cyan;" placeholder="登录/输入账号/密码 "><br>
+        <input type="password" name="passWord" id="passWord">
+        <button class="but" type="submit" >登录</button>
+    </form>
+</div>
+</body>
+<script>
+    var btn = document.querySelector('button');
+    btn.addEventListener('click',function (e) {
+        var userNum = document.getElementById("userName").value;
+        var passWord = document.getElementById("passWord").value;
+        $.ajax({
+            url:'/adminLogin',
+            type:'POST',
+            dataType:"json",
+            contentType:'application/x-www-form-urlencoded;charset=UTF-8',
+            data: {"userNum": userNum, "passWord": passWord },
+            success:function (arg){
+                window.open('admin.html','_self');
+            },
+            error:function (e) {
+            }
+
+        })
+    })
+
+</script>
+</html>

@@ -26,7 +26,7 @@ body {
     cursor: pointer;
 
 }
-#left ul li:hover {
+#left ul li a:hover {
     background-color: #ffffff;
 }
 #left ul li a {

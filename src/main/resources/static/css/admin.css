@@ -1,0 +1,22 @@
+#left>ul>li>a:hover{
+    background-color: red;
+}
+.sonul,
+.sonul1,
+.sonul2,
+.sonul3 {
+    display: none;
+}
+#left .sonul,
+#left .sonul1,
+#left .sonul2,
+#left .sonul3 {
+    background-color: blueviolet;
+}
+#left>ul>.sonul>li>a {
+    display: block;
+    padding-left: 36px;
+}
+.sonulMove {
+    transition: all 1s ease 5s;
+}

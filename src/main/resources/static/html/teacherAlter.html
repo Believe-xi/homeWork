@@ -48,7 +48,7 @@
     标题: <span>标题1</span><br><br>
     内容: <span>作业1</span><br><br>
     评语: <textarea name="" id="" cols="30" rows="10"></textarea><br><br>
-    成绩: <input type="text">
+    成绩: <input type="number">
         <div class="btn">
             <button>提交</button>
             <input type="button" value="返回">
@@ -93,17 +93,20 @@
     var textarea = document.querySelector('textarea');
     var btn = document.querySelector('button');
     var inputs = document.querySelectorAll('input');
+    var taskId = window.location.search;
+    taskId = taskId.substr(1,taskId.length-1);
     btn.addEventListener('click',function (e) {
         $.ajax({
             // TODO
-            url:'/allTask',
+            url:'/evaluate',
             type:'POST',
             dataType:"json",
             contentType:'application/x-www-form-urlencoded;charset=UTF-8',
-            data:{"evaluation":textarea.value,"grade":inputs[0].value},
+            data:{"evaluation":textarea.value,"grade":parseInt(inputs[0].value),"taskId":taskId},
             success:function (arg){
-                alert("修改成功");
-                window.open('teacherCheck.html');
+                // alert("修改成功");
+                // window.open('teacherCheck.html','_self');
+                alert(arg);
 
             },
             error:function (e) {
@@ -112,8 +115,8 @@
 
         })
     });
-    input[1].addEventListener('click',function (e) {
-        window.open('teacherCheck.html');
-    })
+    inputs[1].addEventListener('click',function (e) {
+        window.open('teacherCheck.html','_self');
+    });
 </script>
 </html>
