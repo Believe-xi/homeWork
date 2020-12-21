@@ -21,4 +21,7 @@ public class TeacherService {
     public TeacherEntity saveTeacher(TeacherEntity teacherEntity){
         return teacherDao.save(teacherEntity);
     }
+    public void deleteTeacher(TeacherEntity teacherEntity){
+        teacherDao.delete(teacherEntity);
+    }
 }
