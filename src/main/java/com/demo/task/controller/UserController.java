@@ -3,6 +3,7 @@ package com.demo.task.controller;
 import com.demo.task.Entity.StudentEntity;
 import com.demo.task.Entity.TeacherEntity;
 import com.demo.task.Service.StudentService;
+import com.demo.task.Service.TaskService;
 import com.demo.task.Service.TeacherService;
 import com.demo.task.UtilEntity.ResponseEntity;
 import com.demo.task.UtilEntity.UserEntity;
@@ -19,6 +20,8 @@ public class UserController {
     TeacherService teacherService;
     @Autowired
     StudentService studentService;
+    @Autowired
+    TaskService taskService;
 
     @PostMapping("/saveUser")
     public ResponseEntity<UserEntity> saveUser(HttpServletRequest request){
@@ -94,6 +97,7 @@ public class UserController {
                 responseEntity.setMsg("user is not exists for this userNum & identity");
             }
             else{
+                taskService.deleteTaskByStudentId(userEntity.getId());
                 studentService.deleteStudent((StudentEntity)userEntity);
                 responseEntity.setData(userEntity);
             }

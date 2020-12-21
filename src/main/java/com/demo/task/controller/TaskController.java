@@ -53,6 +53,13 @@ public class TaskController {
         taskService.saveTask(taskEntity);
         return new ResponseEntity<>(200,"success!");
     }
+
+    @PostMapping("/deleteTask")
+    public ResponseEntity<String> deleteTask(HttpServletRequest request){
+        int studentId = Integer.parseInt(request.getParameter("studentId"));
+        taskService.deleteTaskByStudentId(studentId);
+        return new ResponseEntity<>(200,"success");
+    }
 }
 
 
