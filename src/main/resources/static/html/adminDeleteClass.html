@@ -6,17 +6,32 @@
     <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
     <script src="https://libs.baidu.com/jquary/3.3.1/jquary.min.js"></script>
     <script src="../js/tools.js"></script>
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
     <style>
         #title div p{
             border: 1px solid pink;
+        }
+        div {
+            height: 30px;
+            line-height: 30px;
+
+        }
+        button {
+            height: 30px;
+            float: right;
+            line-height: 27px;
         }
     </style>
 </head>
 <body>
 
-<div id = "title">
-    获取班级
-    <div>id: <span>1</span> 专业:  <span>计科</span> 班级:<span>1803</span></div>
+<div id = "title" class="container">
+   <div> 获取班级</div>
+    <div class="panel panel-default">id: <span>1</span> 专业:  <span>计科</span> 班级:<span>1803</span> <button>删除</button></div>
 
 </div>
 
@@ -38,6 +53,7 @@
                 for (var i = 0; i<arg.data.length;i++){
                     data = arg.data;
                     var temp = document.createElement('div');
+                    temp.className = 'panel panel-default';
                     title.appendChild(temp);
                     temp.innerHTML = 'id: <span></span> 专业:  <span></span> 班级:<span></span> <button>删除</button>';
                     temp.children[0].innerHTML = arg.data[i].id;
@@ -54,7 +70,7 @@
         })
     }
     var btns = document.querySelectorAll('button');
-    for (var i = 0; i < as.lengtg; i++) {
+    for (var i = 0; i < btns.lengtg; i++) {
         btns[i].addEventListener('click',function () {
             $.ajax({
                 // TODO
@@ -62,7 +78,7 @@
                 type:'POST',
                 dataType:"json",
                 contentType:'application/x-www-form-urlencoded;charset=UTF-8',
-                data:{"content":content.value,"title":input.value},
+                data:{},
                 success:function (arg){
                     alert("删除成功");
                 },
@@ -73,5 +89,6 @@
             })
         })
     }
+
 </script>
 </html>

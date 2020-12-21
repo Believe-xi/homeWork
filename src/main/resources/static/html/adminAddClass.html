@@ -6,6 +6,7 @@
     <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
     <script src="https://libs.baidu.com/jquary/3.3.1/jquary.min.js"></script>
     <script src="../js/tools.js"></script>
+    <link rel="stylesheet" href="../css/admin.css">
     <style>
         input[type=text] ,
         input[type=password],
@@ -40,6 +41,8 @@
             box-shadow: 2px 2px 5px 1px #ccc;
 
         }
+
+
     </style>
 </head>
 <body>
@@ -50,7 +53,6 @@
 </form>
 </body>
 <script>
-    console.log(document.cookie);
     var inputs = document.getElementsByTagName("input");
     var btn = document.querySelectorAll('button');
     // console.log(getCookie('identity'));
@@ -59,7 +61,7 @@
         urls = urls.substr(9,urls.length-9);
         $.ajax({
             // TODO
-            url:'/addClass',
+            url:'/saveClass',
             type:'POST',
             dataType:"json",
             contentType:'application/x-www-form-urlencoded;charset=UTF-8',
