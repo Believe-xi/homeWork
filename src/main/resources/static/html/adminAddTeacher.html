@@ -17,20 +17,45 @@
     <span>姓名:</span><input type="text"><br>
     <span>性别:</span> <input type="radio" name="sex" value="男">男<input type="radio" name="sex" value="女">女<br>
     <span>班级:</span><select name="" id="" class="select">
-    <option value="1" selected="selected">计科1803</option>
     </select>
     <button class="btn" value="submit">提交</button>
   </form>
 </body>
 <script>
-  console.log(document.cookie);
+  window.onload = function () {
+    var btns;
+    var select = document.querySelector("select");
+    $.ajax({
+      // TODO
+      url:'/allClass',
+      type:'POST',
+      dataType:"json",
+      contentType:'application/x-www-form-urlencoded;charset=UTF-8',
+      success:function (arg){
+        for (var i = 0; i<arg.data.length;i++){
+          var temp = document.createElement('option');
+          select.appendChild(temp);
+          if (i == '0') {
+            temp.setAttribute('selected','selected');
+          }
+          temp.innerHTML = arg.data[i].major + arg.data[i].num;
+
+          temp.setAttribute('value',''+parseInt(arg.data[i].id));
+          console.log(temp);
+        }
+
+      },
+      error:function (e) {
+
+
+      }
+    })
+  }
   var inputs = document.getElementsByTagName("input");
   var btn = document.querySelectorAll('button');
   var select = document.querySelector("select");
   // console.log(getCookie('identity'));
   btn[0].addEventListener('click',function (e) {
-    var urls = window.location.search;
-    urls = urls.substr(9,urls.length-9);
     $.ajax({
       // TODO
       url:'/saveUser',

@@ -16,9 +16,9 @@
             border: 1px solid pink;
         }
         div {
-            height: 34px;
-            line-height: 34px;
-            text-indent: 1em;
+            height: 30px;
+            line-height: 30px;
+
         }
         button {
             height: 30px;
@@ -30,32 +30,39 @@
 <body>
 
 <div id = "title" class="container">
-    获取标题
-    <div class="panel panel-default">账号: <span>18020</span> 姓名:  <span>ozk</span></div>
+    <div> 获取班级</div>
+    <!--    <div class="panel panel-default">id: <span>1</span> 专业:  <span>计科</span> 班级:<span>1803</span> <button>删除</button></div>-->
 
 </div>
 
 </body>
 <script>
+
     window.onload = function () {
         var title = document.querySelector('#title');
         var urls = window.location.search;
         urls = urls.substr(9,urls.length-9);
+        var btns;
         $.ajax({
             // TODO
             url:'/allUser',
             type:'POST',
             dataType:"json",
             contentType:'application/x-www-form-urlencoded;charset=UTF-8',
-            data:{"userNum":urls},
+            data:{"identity":"教师"},
             success:function (arg){
                 for (var i = 0; i<arg.data.length;i++){
+
                     var temp = document.createElement('div');
                     temp.className = 'panel panel-default';
                     title.appendChild(temp);
-                    temp.innerHTML = 'id: <span></span> 姓名: <span></span> <button>删除</button>';
+                    temp.innerHTML = 'id: <span></span> 账号: <span></span> 姓名: <span></span> 性别: <span></span>  班级:<span></span> <button >删除</button>';
                     temp.children[0].innerHTML = arg.data[i].id;
-                    temp.children[1].innerHTML = arg.data[i].name;
+                    temp.children[1].innerHTML = arg.data[i].num;
+                    temp.children[2].innerHTML = arg.data[i].name;
+                    temp.children[3].innerHTML = arg.data[i].sex;
+                    temp.children[4].innerHTML = arg.data[i].classId;
+                    temp.children[5].addEventListener('click',btnClick);
                     // console.log(arg.data);
                 }
             },
@@ -63,28 +70,26 @@
 
 
             }
+        })
+    }
+    btnClick = function (e) {
+        var classId = e.target.parentNode.children[1].value;
+        $.ajax({
+            // TODO
+            url:'/deleteUser',
+            type:'POST',
+            dataType:"json",
+            contentType:'application/x-www-form-urlencoded;charset=UTF-8',
+            data:{"userNum":classId,"identity":"教师"},
+            success:function (arg){
+                alert("删除成功");
+            },
+            error:function (e) {
+                alert("删除失败");
+            }
 
         })
     }
-    var as = document.querySelectorAll('a');
-    for (var i = 0; i < as.lengtg; i++) {
-        as[i].addEventListener('click',function () {
-            $.ajax({
-                // TODO
-                url:'/submitTask',
-                type:'POST',
-                dataType:"json",
-                contentType:'application/x-www-form-urlencoded;charset=UTF-8',
-                data:{"content":content.value,"title":input.value},
-                success:function (arg){
-                    alert("删除成功");
-                },
-                error:function (e) {
-                    alert("删除失败");
-                }
 
-            })
-        })
-    }
 </script>
 </html>

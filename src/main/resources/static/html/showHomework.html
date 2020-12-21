@@ -21,14 +21,18 @@
     内容: <span>作业1</span><br>
     评语: <span>good1</span><br>
     成绩: <span>90</span><br>
-    <a href="checkGrade.html">返回</a>
+    <a href="#">返回</a>
     <!--        <button class="but" type="submit" >登录</button>-->
     <!--    </form>-->
 </div>
 
 </body>
 <script>
-    // console.log(location);
+    var a = document.querySelector("a");
+    a.addEventListener('click',function (e) {
+        window.open('checkGrade.html','_self');
+        e.preventDefault();
+    })
     window.onload = function () {
         var spans = document.querySelectorAll('span');
         var urls = window.location.search;

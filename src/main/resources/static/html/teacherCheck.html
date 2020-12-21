@@ -34,6 +34,7 @@
             success:function (arg){
                 for (var i = 0; i<arg.data.length;i++){
                     var temp = document.createElement('div');
+
                     title.appendChild(temp);
                     temp.innerHTML = '标题: <span></span> <a>查看</a>';
                     temp.firstElementChild.innerHTML = arg.data[i].title;
