@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 @RestController
 public class UserController {
@@ -20,23 +20,36 @@ public class UserController {
     @Autowired
     StudentService studentService;
 
-    @PostMapping("/addUser")
-    public ResponseEntity<UserEntity> addTeacher(HttpServletRequest request, HttpServletResponse response){
+    @PostMapping("/saveUser")
+    public ResponseEntity<UserEntity> saveUser(HttpServletRequest request){
         UserEntity userEntity = null;
+        String userNum = request.getParameter("userNum");
         String identity = request.getParameter("identity");
-        //判断身份创建学生/教师实体
+        //判断身份 创建/更新 学生/教师 实体
         if(identity.equals("学生")){
-            userEntity = new StudentEntity();
+            //从数据库获取信息
+            userEntity = studentService.getStudent(userNum);
+            //查无此人则新建
+            if(userEntity == null){
+                userEntity = new StudentEntity();
+            }
         }
         else if(request.getParameter("identity").equals("教师")){
-            userEntity = new TeacherEntity();
+            userEntity = teacherService.getTeacher(userNum);
+            if(userEntity == null){
+                userEntity = new TeacherEntity();
+            }
         }
-        //设置用户属性
-        userEntity.setNum(request.getParameter("userNum"));
-        userEntity.setPassWord(request.getParameter("passWord"));
-        userEntity.setName(request.getParameter("userName"));
-        userEntity.setSex(request.getParameter("sex"));
-        userEntity.setClassId(Integer.parseInt(request.getParameter("classId")));
+
+        if(userEntity != null){
+            //设置用户属性
+            userEntity.setNum(request.getParameter("userNum"));
+            userEntity.setPassWord(request.getParameter("passWord"));
+            userEntity.setName(request.getParameter("userName"));
+            userEntity.setSex(request.getParameter("sex"));
+            userEntity.setClassId(Integer.parseInt(request.getParameter("classId")));
+        }
+
         //保存用户数据
         if(identity.equals("学生")){
             studentService.saveStudent((StudentEntity) userEntity);
@@ -51,15 +64,21 @@ public class UserController {
     }
 
     @PostMapping("/allUser")
-    public ResponseEntity allUser(HttpServletRequest request, HttpServletResponse response){
+    public ResponseEntity allUser(HttpServletRequest request){
         String identity = request.getParameter("identity");
-        ResponseEntity responseEntity = new ResponseEntity<>(200,"success");
         if(identity.equals("学生")){
+            ResponseEntity<List<StudentEntity>> responseEntity = new ResponseEntity<>(200,"success");
             responseEntity.setData(studentService.getAllStudent());
+            return responseEntity;
         }
         else if(identity.equals("教师")){
+            ResponseEntity<List<TeacherEntity>> responseEntity = new ResponseEntity<>(200,"success");
             responseEntity.setData(teacherService.getAllTeacher());
+            return responseEntity;
         }
-        return responseEntity;
+        else {
+            return new ResponseEntity<String>(201,"身份信息输入有误");
+        }
     }
+
 }

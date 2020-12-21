@@ -77,7 +77,7 @@ public class LoginController {
     }
 
     @PostMapping("/adminLogin")
-    public ResponseEntity<String> adminLogin(HttpServletRequest request, HttpServletResponse response){
+    public ResponseEntity<String> adminLogin(HttpServletRequest request){
         String adminNum = request.getParameter("userNum");
         String adminPwd = request.getParameter("passWord");
         AdminEntity adminEntity = adminService.getAdmin(adminNum);
