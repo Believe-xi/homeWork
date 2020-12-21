@@ -81,4 +81,39 @@ public class UserController {
         }
     }
 
+    @PostMapping("/deleteUser")
+    public ResponseEntity<UserEntity> deleteUser(HttpServletRequest request){
+        ResponseEntity<UserEntity> responseEntity = new ResponseEntity<>();
+        UserEntity userEntity;
+        String userNum = request.getParameter("userNum");
+        String identity = request.getParameter("identity");
+        if(identity.equals("学生")){
+            userEntity = studentService.getStudent(userNum);
+            if(userEntity == null){
+                responseEntity.setStatus(201);
+                responseEntity.setMsg("user is not exists for this userNum & identity");
+            }
+            else{
+                studentService.deleteStudent((StudentEntity)userEntity);
+                responseEntity.setData(userEntity);
+            }
+        }
+        else if(identity.equals("教师")){
+            userEntity = teacherService.getTeacher(userNum);
+            if(userEntity == null){
+                responseEntity.setStatus(201);
+                responseEntity.setMsg("user is not exists for this userNum & identity");
+            }
+            else{
+                teacherService.deleteTeacher((TeacherEntity)userEntity);
+                responseEntity.setData(userEntity);
+            }
+        }
+        else{
+            responseEntity.setStatus(201);
+            responseEntity.setMsg("user is not exists for this userNum & identity");
+        }
+        return  responseEntity;
+    }
+
 }

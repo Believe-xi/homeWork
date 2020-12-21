@@ -23,4 +23,8 @@ public class StudentService {
     public StudentEntity saveStudent(StudentEntity studentEntity){
         return studentDao.save(studentEntity);
     }
+
+    public void deleteStudent(StudentEntity studentEntity){
+        studentDao.delete(studentEntity);
+    }
 }
