@@ -1,5 +1,5 @@
 #left>ul>li>a:hover{
-    background-color: red;
+    background-color: #1e282c;
 }
 .sonul,
 .sonul1,
@@ -11,7 +11,7 @@
 #left .sonul1,
 #left .sonul2,
 #left .sonul3 {
-    background-color: blueviolet;
+    background-color: #2c3b41;
 }
 #left>ul>.sonul>li>a {
     display: block;
@@ -52,7 +52,6 @@ input[type=number]
 
     cursor: pointer;
 
-    box-shadow: 2px 2px 5px 1px #ccc;
 }
 
 .btn {

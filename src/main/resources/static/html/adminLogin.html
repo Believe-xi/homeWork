@@ -29,9 +29,16 @@
             contentType:'application/x-www-form-urlencoded;charset=UTF-8',
             data: {"userNum": userNum, "passWord": passWord },
             success:function (arg){
+                if (arg.status ==200)
                 window.open('admin.html','_self');
+                else  {
+                    alert("登录失败");
+
+                }
             },
             error:function (e) {
+                alert("请求失败");
+
             }
 
         })

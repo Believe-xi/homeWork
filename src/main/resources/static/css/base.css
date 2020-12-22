@@ -22,12 +22,26 @@ body {
     text-align: center;
     background-color: skyblue;
 }
+#left {
+    background-color: #222d32;
+
+}
+#left ul li a {
+    color:#83bbce;
+}
 #left ul li {
     cursor: pointer;
 
 }
-#left ul li a:hover {
-    background-color: #ffffff;
+#left ul li p {
+    color:#83bbce;
+
+}
+#left ul li a:hover,
+#left ul li p:hover
+{
+    background-color: #1e282c;
+    color: #ffffff;
 }
 #left ul li a {
     display:block;
@@ -40,4 +54,12 @@ body {
     height:100%;
     width:86%;
     margin-left: 200px;
+    background-color: #ecf0f5!important;
+}
+body {
+    background: url(../img/backGround1.jpg);
+}
+form {
+    margin-top: 20px;
+    margin-left: 50px;
 }
